@@ -24,10 +24,10 @@ namespace StatePattern.Enemy
         private void TeleportToRandomPosition() => Owner.Agent.Warp(GetRandomNavMeshPoint());
         private Vector3 GetRandomNavMeshPoint()
         {
-            Vector3 randomDirection = Random.insideUnitSphere * Owner.Data.RangeRadius + Owner.Position;
+            Vector3 randomDirection = Random.insideUnitSphere * Owner.Data.TeleportRadius + Owner.Position;
             NavMeshHit hit;
 
-            if (NavMesh.SamplePosition(randomDirection, out hit, Owner.Data.RangeRadius, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomDirection, out hit, Owner.Data.TeleportRadius, NavMesh.AllAreas))
                 return hit.position;
 
             return Owner.Data.SpawnPosition;
