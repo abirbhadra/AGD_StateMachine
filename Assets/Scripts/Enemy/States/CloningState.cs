@@ -1,6 +1,5 @@
 using StatePattern.Main;
 using StatePattern.StateMachine;
-using UnityEngine;
 
 namespace StatePattern.Enemy
 {
@@ -18,7 +17,7 @@ namespace StatePattern.Enemy
         }
 
         public void Update() { }
-
+        public void OnStateExit() { }
         private void CreateNewClone()
         {
             CloneManController newCloneMan = GameService.Instance.EnemyService.CreateEnemy(Owner.Data) as CloneManController;
@@ -28,8 +27,6 @@ namespace StatePattern.Enemy
             newCloneMan.ChangeColor(EnemyColorType.Clone);
             GameService.Instance.EnemyService.AddEnemy(newCloneMan);
         }
-
-        public void OnStateExit() { }
 
     }
 }

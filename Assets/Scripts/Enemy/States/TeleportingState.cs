@@ -1,6 +1,4 @@
 using StatePattern.StateMachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,7 +18,7 @@ namespace StatePattern.Enemy
         }
 
         public void Update() { }
-
+        public void OnStateExit() { }
         private void TeleportToRandomPosition() => Owner.Agent.Warp(GetRandomNavMeshPoint());
         private Vector3 GetRandomNavMeshPoint()
         {
@@ -29,10 +27,9 @@ namespace StatePattern.Enemy
 
             if (NavMesh.SamplePosition(randomDirection, out hit, Owner.Data.TeleportRadius, NavMesh.AllAreas))
                 return hit.position;
-
-            return Owner.Data.SpawnPosition;
+            else
+                return Owner.Data.SpawnPosition;
         }
 
-        public void OnStateExit() { }
     }
 }

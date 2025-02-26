@@ -3,7 +3,6 @@ using StatePattern.Main;
 using StatePattern.Sound;
 using StatePattern.UI;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace StatePattern.Enemy
 {
@@ -35,7 +34,7 @@ namespace StatePattern.Enemy
             foreach (EnemyScriptableObject enemySO in enemyDataForLevel)
             {
                 EnemyController enemy = CreateEnemy(enemySO);
-                activeEnemies.Add(enemy);
+                AddEnemy(enemy);
             }
 
             SetEnemyCount();
@@ -73,13 +72,7 @@ namespace StatePattern.Enemy
 
             return enemy;
         }
-
-        public void AddEnemy(EnemyController enemy)
-        {
-            activeEnemies.Add(enemy);
-            spawnedEnemies++;
-        }
-
+        public void AddEnemy(EnemyController enemy) => activeEnemies.Add(enemy);
         public void EnemyDied(EnemyController deadEnemy)
         {
             activeEnemies.Remove(deadEnemy);

@@ -1,5 +1,4 @@
-﻿using StatePattern.Main;
-using StatePattern.Player;
+﻿using StatePattern.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,21 +40,7 @@ namespace StatePattern.Enemy
         private void SetRangeImageRadius(float radiusToSet) => detectableRange.transform.localScale = new Vector3(radiusToSet, radiusToSet, 1);
 
         public void PlayShootingEffect() => muzzleFlash.Play();
-
-        public void ToggleColor(bool value)
-        {
-            if (value)
-            {
-                enemyGraphic.color = Color.red;
-            }
-            else
-            {
-                enemyGraphic.color = Color.white;
-            }
-        }
-
         private void Update() => Controller?.UpdateEnemy();
-
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<PlayerView>() != null && !other.isTrigger)
@@ -67,9 +52,7 @@ namespace StatePattern.Enemy
             if (other.GetComponent<PlayerView>() != null && !other.isTrigger)
                 Controller.PlayerExitedRange();
         }
-
         public void Destroy() => StartCoroutine(EnemyDeathSequence());
-
         private IEnumerator EnemyDeathSequence()
         {
             Controller.ToggleKillOverlay(true);
@@ -83,7 +66,6 @@ namespace StatePattern.Enemy
 
             Destroy(gameObject);
         }
-
         public void ChangeColor(EnemyColorType colorType) => enemyGraphic.color = enemyColors.Find(item => item.Type == colorType).Color;
 
         public void SetDefaultColor(EnemyColorType colorType)
